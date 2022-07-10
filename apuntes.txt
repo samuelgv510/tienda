@@ -1,0 +1,7 @@
+#back
+cd tienda/back/
+npm init #todo enter despues
+
+npm install bcrypt-nodejs body-parser connect-multiparty express moment mongoose jsonwebtoken jwt-simple
+npm install --save-dev nodemon
+npm start
