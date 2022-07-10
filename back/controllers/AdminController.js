@@ -1,21 +1,19 @@
 'use strict'
 
-var cliente=require('../models/cliente');
+var admin=require('../models/admin');
 var bcrypt=require('bcrypt-nodejs');
 
-const registroCliente=async function(req,res){
+const registroAdmin=async function(req,res){
     var data=req.body;
-    var clientes=[];
-    clientes=await cliente.find({email:data.email});
-    if(clientes.length==0){
+    var admins=[];
+    admins=await admin.find({email:data.email});
+    if(admins.length==0){
         
         if(data.password){
             bcrypt.hash(data.password,null,null,async function(err,hash){
                 if(hash){
                     data.password=hash;
-                    //registro
-                    var reg=await cliente.create(data);
-                    //console.log(hash);
+                    var reg=await admin.create(data);
                     res.status(200).send({data:reg});
                 }else{
                     res.status(200).send({message:'ErrorServer',data:undefined});
@@ -30,5 +28,5 @@ const registroCliente=async function(req,res){
 }
 
 module.exports={
-    registroCliente
+    registroAdmin
 }

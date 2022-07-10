@@ -7,8 +7,9 @@ var mongoose=require('mongoose');
 var port=process.env.PORT||4201;
 
 var clienteRoute=require('./routes/cliente');
+var adminRoute=require('./routes/admin');
 
-mongoose.connect('mongodb://127.0.0.1:27017/tienda',(err,res)=>{
+mongoose.connect('mongodb://127.0.0.1:27017/tienda',{useUnifiedTopology:true,useNewUrlParser:true},(err,res)=>{
     if(err){
         console.log(err);
     }else{        
@@ -30,5 +31,6 @@ app.use((req,res,next)=>{
 });
 
 app.use('/api',clienteRoute);
+app.use('/api',adminRoute);
 
 module.exports=app;
